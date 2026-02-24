@@ -5,6 +5,7 @@
 
 .columns img {
   width: 100%;
+  border-radius: var(--radius-m);
 }
 
 .columns > div > div {
@@ -19,15 +20,38 @@
   display: block;
 }
 
+.columns p {
+  color: var(--text-secondary);
+}
+
+.columns h2,
+.columns h3 {
+  color: var(--heading-color);
+}
+
+/* centered variant */
+.columns.centered {
+  text-align: center;
+}
+
+/* reverse variant */
+.columns.reverse > div {
+  flex-direction: column-reverse;
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
+    gap: var(--space-xl);
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns.reverse > div {
+    flex-direction: row-reverse;
   }
 }
