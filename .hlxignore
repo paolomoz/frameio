@@ -10,3 +10,4 @@ tools/*
 drafts/*
 journal/*
 *.png
+!images/*.png
