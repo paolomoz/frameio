@@ -9,12 +9,13 @@
   border-radius: var(--radius-m);
 }
 
+/* mobile: text first, image second */
 .columns > div > div {
-  order: 1;
+  order: 0;
 }
 
 .columns > div > .columns-img-col {
-  order: 0;
+  order: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +23,7 @@
 
 .columns > div > .columns-img-col img {
   display: block;
-  max-width: 280px;
+  max-width: 160px;
   height: auto;
 }
 
@@ -49,6 +50,12 @@
 /* reverse variant */
 .columns.reverse > div {
   flex-direction: column-reverse;
+}
+
+@media (width >= 600px) {
+  .columns > div > .columns-img-col img {
+    max-width: 200px;
+  }
 }
 
 @media (width >= 900px) {
