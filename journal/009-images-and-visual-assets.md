@@ -34,11 +34,19 @@ User provided a full plan: scrape frame.io for image URLs (Sanity CDN), add them
 
 6. **Verified** at 600px, 900px (implicit), and 1200px breakpoints. All pages render with images. Lint clean.
 
+7. **Two more CDN deployment issues discovered on AEM preview:**
+   - `createOptimizedPicture` adds `?width=X&format=webply&optimize=medium` query params — the AEM CDN can't process these on static git files (PNGs). Fix: replaced with plain `<picture><img>` elements via `createStaticPicture` helper.
+   - `.hlxignore` had `*.png` which blocked PNGs from being deployed to the CDN (S3). JPGs worked, PNGs 404'd. Fix: added `!images/*.png` exception.
+
+8. **Final verification** on AEM preview — all 3 pages render with all images, zero console errors. PR checks (build + PSI) pass.
+
 ### Friction log
 - AEM's `<picture>` optimization pipeline rejects anything that isn't a DA-uploaded media asset. This wasn't obvious — took several rounds of debugging (external URLs, local paths, `media_` prefixes) before understanding the constraint.
 - DA service token was expired (6+ months old), blocking direct DA API uploads.
 - Dev server prefers remote DA content over local drafts when both exist — `--html-folder` is fallback only, not override.
 - Solution: commit images to git repo and load them in block JS. Works on both localhost and AEM preview since code sync deploys all static files.
+- `createOptimizedPicture` is designed for DA-managed media, not static files. The optimization query params (`?format=webply`) cause 404s on static PNGs served from git. Had to create a plain image helper instead.
+- `.hlxignore` is separate from `.gitignore` — files can be in git but blocked from the CDN. The `*.png` rule silently blocked deployment with no warning. Only discovered via `curl -I` returning `[static: content] S3: Not Found`.
 
 ### What it means for the thesis
-The AEM image pipeline is a concrete example of where the CMS *adds* friction rather than removing it. A simple task (put an image on a page) requires understanding DA media assets, the optimization pipeline, and the content-vs-code separation. An LLM agent can work around it by shifting image responsibility from content to code — but that subverts the CMS's content model. The question becomes: is that content model worth the friction?
+The AEM image pipeline is a concrete example of where the CMS *adds* friction rather than removing it. A simple task (put an image on a page) requires understanding DA media assets, the optimization pipeline, the content-vs-code separation, `.hlxignore` vs `.gitignore`, and the difference between DA-managed images and static files. An LLM agent can work around it by shifting image responsibility from content to code — but that subverts the CMS's content model. The question becomes: is that content model worth the friction? Three separate debugging rounds (pipeline errors, CDN query params, hlxignore blocking) to display an image.
