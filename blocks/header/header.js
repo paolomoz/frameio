@@ -131,10 +131,11 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
+  const brandLink = navBrand?.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+    const brandWrapper = brandLink.closest('.button-container, .button-wrapper');
+    if (brandWrapper) brandWrapper.className = '';
   }
 
   const navSections = nav.querySelector('.nav-sections');
