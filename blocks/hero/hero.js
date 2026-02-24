@@ -1,4 +1,12 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+function createStaticPicture(src, alt = '', eager = false) {
+  const picture = document.createElement('picture');
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.loading = eager ? 'eager' : 'lazy';
+  picture.appendChild(img);
+  return picture;
+}
 
 const HERO_IMAGES = {
   '/': { bg: '/images/hero-bg.jpg', screenshot: '/images/hero-screenshot.png' },
@@ -24,7 +32,7 @@ export default function decorate(block) {
     const { pathname } = window.location;
     const config = HERO_IMAGES[pathname];
     if (config?.bg) {
-      picture = createOptimizedPicture(config.bg, h1?.textContent || '', true);
+      picture = createStaticPicture(config.bg, h1?.textContent || '', true);
     } else {
       picture = null;
     }
@@ -70,7 +78,7 @@ export default function decorate(block) {
 
   // Use config screenshot if no valid one from content
   if (!screenshotPic && config?.screenshot) {
-    screenshotPic = createOptimizedPicture(config.screenshot, 'Frame.io interface', false);
+    screenshotPic = createStaticPicture(config.screenshot, 'Frame.io interface', false);
   }
 
   if (screenshotPic) {

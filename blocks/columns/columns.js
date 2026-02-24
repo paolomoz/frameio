@@ -1,4 +1,12 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+function createStaticPicture(src, alt = '') {
+  const picture = document.createElement('picture');
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.loading = 'lazy';
+  picture.appendChild(img);
+  return picture;
+}
 
 const IMAGE_MAP = {
   'Workflow Management': '/images/feature-workflow.png',
@@ -29,7 +37,7 @@ export default function decorate(block) {
           const mappedSrc = IMAGE_MAP[alt];
           if (mappedSrc || img.src.includes('about:error')) {
             const src = mappedSrc || '/images/feature-workflow.png';
-            pic = createOptimizedPicture(src, alt, false);
+            pic = createStaticPicture(src, alt, false);
             img.replaceWith(pic);
           }
         }
