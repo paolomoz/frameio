@@ -109,7 +109,9 @@ export default function decorate(block) {
     let ctaHTML = '';
     if (tier.ctaLink) {
       const classes = tier.isPopular ? 'button accent' : 'button primary';
-      ctaHTML = `<a href="${tier.ctaLink.href}" class="${classes}" title="${tier.ctaLink.textContent.trim()}">${tier.ctaLink.textContent.trim()}</a>`;
+      const ctaText = tier.ctaLink.textContent.trim();
+      const ariaLabel = tier.name ? `${ctaText} — ${tier.name} plan` : ctaText;
+      ctaHTML = `<a href="${tier.ctaLink.href}" class="${classes}" title="${ctaText}" aria-label="${ariaLabel}">${ctaText}</a>`;
     }
 
     card.innerHTML = `

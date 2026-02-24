@@ -30,13 +30,29 @@ export default async function decorate(block) {
     if (last) last.classList.add('footer-bottom');
   }
 
-  // decorate social icon links
+  // fix heading hierarchy: H4 -> H3 in footer (WCAG)
+  footer.querySelectorAll('h4').forEach((h4) => {
+    const h3 = document.createElement('h3');
+    [...h4.attributes].forEach((attr) => h3.setAttribute(attr.name, attr.value));
+    h3.innerHTML = h4.innerHTML;
+    h4.replaceWith(h3);
+  });
+
+  // decorate social icon links with accessible names
   footer.querySelectorAll('a .icon').forEach((icon) => {
     const link = icon.closest('a');
     if (link) {
       const socialWrap = link.closest('p') || link.closest('div');
       if (socialWrap && !socialWrap.classList.contains('footer-social')) {
         socialWrap.classList.add('footer-social');
+      }
+      // add aria-label from icon class name (e.g. icon-instagram -> Instagram)
+      if (!link.getAttribute('aria-label') && !link.textContent.trim()) {
+        const iconClass = [...icon.classList].find((c) => c.startsWith('icon-'));
+        if (iconClass) {
+          const name = iconClass.replace('icon-', '').replace(/-/g, ' ');
+          link.setAttribute('aria-label', name.charAt(0).toUpperCase() + name.slice(1));
+        }
       }
     }
   });
