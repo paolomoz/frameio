@@ -105,19 +105,14 @@ main .section.glow-warm::before {
   color: var(--heading-color);
 }
 
-/* scroll-reveal animations */
-main .section {
+/* scroll-reveal animations - only activate once JS adds the .reveal-ready class */
+main.reveal-ready .section {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-main .section.visible {
+main.reveal-ready .section.visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-main .section:first-of-type {
-  opacity: 1;
-  transform: none;
 }

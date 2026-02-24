@@ -20,7 +20,11 @@ import {
  */
 export async function loadFragment(path) {
   if (path && path.startsWith('/') && !path.startsWith('//')) {
-    const resp = await fetch(`${path}.plain.html`);
+    let resp = await fetch(`${path}.plain.html`);
+    // fallback: try drafts folder for local dev
+    if (!resp.ok && window.location.pathname.startsWith('/drafts/')) {
+      resp = await fetch(`/drafts${path}.plain.html`);
+    }
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();

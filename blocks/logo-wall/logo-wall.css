@@ -35,12 +35,15 @@
 /* text fallback logos */
 .logo-wall .logo-wall-item:not(:has(img)) {
   color: var(--text-secondary);
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
-  opacity: 0.6;
-  transition: opacity var(--transition-normal);
+  font-size: var(--heading-font-size-s);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  transition: opacity var(--transition-normal), color var(--transition-normal);
 }
 
 .logo-wall .logo-wall-item:not(:has(img)):hover {
   opacity: 1;
+  color: var(--heading-color);
 }

@@ -1,6 +1,7 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: var(--space-l);
 }
 
 .columns img {
@@ -14,19 +15,30 @@
 
 .columns > div > .columns-img-col {
   order: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .columns > div > .columns-img-col img {
   display: block;
+  max-width: 280px;
+  height: auto;
 }
 
 .columns p {
   color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 .columns h2,
 .columns h3 {
   color: var(--heading-color);
+  margin-top: 0;
+}
+
+.columns .button-wrapper {
+  margin-top: var(--space-s);
 }
 
 /* centered variant */
@@ -49,6 +61,10 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns > div > .columns-img-col img {
+    max-width: 80%;
   }
 
   .columns.reverse > div {
