@@ -71,7 +71,8 @@ export default function decorate(block) {
       try {
         const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
         const currentPath = window.location.pathname.replace(/\/$/, '');
-        if (linkPath && linkPath === currentPath) {
+        const normalizedCurrent = currentPath.replace(/^\/drafts/, '');
+        if (linkPath && (linkPath === currentPath || linkPath === normalizedCurrent)) {
           card.classList.add('active');
         }
       } catch {
