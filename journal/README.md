@@ -28,3 +28,4 @@ Tracking the experience of building and managing a website entirely through Clau
 | 006 | 2026-02-24 | Accessibility audit and fixes | WCAG 2.1 AA audit: fixed skip link, focus states, social link labels, heading hierarchy, generic button labels, nav ARIA. |
 | 007 | 2026-02-24 | Deployment and PR | Created feature branch, pushed 9 commits, opened PR #1. Build passed, PSI pending (needs DA content). |
 | 008 | 2026-02-24 | DA content and nav fix | Pushed 6 pages to DA, fixed nav 3-section structure, fixed columns-reverse variant, all pages rendering on AEM preview. |
+| 009 | 2026-02-24 | Images and visual assets | Added 10 product screenshots from frame.io Sanity CDN. Fixed columns CSS. Modified hero/columns JS to load images from git repo (AEM pipeline workaround). |

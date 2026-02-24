@@ -12,7 +12,8 @@ helix-importer-ui
 !CLAUDE.md
 !AGENTS.md
 
-# Screenshots and temp artifacts
+# Screenshots and temp artifacts (but keep images/ for product assets)
 *.png
+!images/*.png
 .playwright-mcp/
 daTokenService.ts
