@@ -1,0 +1,97 @@
+/* tabs -- accessible tab bar with panel switching */
+
+.tabs {
+  width: 100%;
+}
+
+/* tab bar */
+.tabs .tabs-list {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.tabs .tabs-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* individual tab button */
+.tabs .tabs-tab {
+  position: relative;
+  appearance: none;
+  background: none;
+  border: none;
+  padding: var(--space-s) var(--space-m);
+  color: var(--text-secondary);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.tabs .tabs-tab:hover {
+  color: var(--text-color);
+}
+
+.tabs .tabs-tab:focus-visible {
+  outline: 2px solid var(--color-electric);
+  outline-offset: -2px;
+  border-radius: var(--radius-s);
+}
+
+/* active tab -- bottom underline accent */
+.tabs .tabs-tab[aria-selected="true"] {
+  color: var(--color-electric);
+  font-weight: 600;
+}
+
+.tabs .tabs-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-electric);
+  border-radius: 2px 2px 0 0;
+}
+
+/* panels */
+.tabs .tabs-panels {
+  padding: var(--space-l) 0;
+}
+
+.tabs .tabs-panel {
+  animation: tabs-fade-in 250ms ease;
+}
+
+.tabs .tabs-panel[hidden] {
+  display: none;
+}
+
+.tabs .tabs-panel p {
+  color: var(--text-color);
+}
+
+@keyframes tabs-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (width >= 600px) {
+  .tabs .tabs-tab {
+    padding: var(--space-s) var(--space-l);
+  }
+}

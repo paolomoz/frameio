@@ -1,0 +1,44 @@
+/* cta-banner -- full-width call-to-action with radial glow */
+
+.cta-banner {
+  width: 100%;
+  padding: var(--space-xxl) var(--space-m);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgb(59 99 251 / 30%) 0%, transparent 70%),
+    var(--surface-darkest);
+  text-align: center;
+}
+
+.cta-banner .cta-banner-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-banner h1,
+.cta-banner h2,
+.cta-banner h3,
+.cta-banner h4 {
+  color: var(--heading-color);
+  text-wrap: balance;
+  margin-top: 0;
+}
+
+.cta-banner .cta-banner-description {
+  color: var(--text-secondary);
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+  margin-bottom: var(--space-l);
+}
+
+.cta-banner .button-wrapper {
+  display: inline-flex;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (width >= 900px) {
+  .cta-banner {
+    padding: var(--space-xxl) var(--space-l);
+  }
+}

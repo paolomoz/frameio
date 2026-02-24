@@ -1,0 +1,192 @@
+/* carousel – full-width, scroll-snap, glass nav */
+
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+/* viewport wraps track + buttons */
+.carousel .carousel-viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+}
+
+/* slide track */
+.carousel .carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  outline: none;
+}
+
+.carousel .carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* individual slide */
+.carousel .carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-m);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.carousel .carousel-slide > div {
+  max-width: 800px;
+  width: 100%;
+}
+
+.carousel .carousel-slide picture {
+  display: block;
+  margin-bottom: var(--space-m);
+}
+
+.carousel .carousel-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-m);
+  object-fit: cover;
+}
+
+.carousel .carousel-slide h2,
+.carousel .carousel-slide h3 {
+  color: var(--heading-color);
+  margin-top: var(--space-s);
+}
+
+.carousel .carousel-slide p {
+  color: var(--text-secondary);
+}
+
+/* fade indicators on edges */
+.carousel .carousel-viewport::before,
+.carousel .carousel-viewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel .carousel-viewport::before {
+  left: 0;
+  background: linear-gradient(to right, var(--background-color), transparent);
+}
+
+.carousel .carousel-viewport::after {
+  right: 0;
+  background: linear-gradient(to left, var(--background-color), transparent);
+}
+
+/* glass navigation buttons */
+.carousel .carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  color: var(--heading-color);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  padding: 0;
+}
+
+.carousel .carousel-btn:hover {
+  background: rgb(255 255 255 / 12%);
+  border-color: var(--border-color-strong);
+}
+
+.carousel .carousel-btn:focus-visible {
+  outline: 2px solid var(--color-electric);
+  outline-offset: 2px;
+}
+
+.carousel .carousel-btn-prev {
+  left: var(--space-s);
+}
+
+.carousel .carousel-btn-next {
+  right: var(--space-s);
+}
+
+/* dots */
+.carousel .carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-m) 0;
+}
+
+.carousel .carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color-strong);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.carousel .carousel-dot:hover {
+  background: var(--glass-bg);
+  border-color: var(--text-secondary);
+}
+
+.carousel .carousel-dot.active {
+  background: var(--color-electric);
+  border-color: var(--color-electric);
+  transform: scale(1.2);
+}
+
+.carousel .carousel-dot:focus-visible {
+  outline: 2px solid var(--color-electric);
+  outline-offset: 2px;
+}
+
+/* responsive */
+@media (width >= 600px) {
+  .carousel .carousel-slide {
+    min-height: 360px;
+    padding: var(--space-xl) var(--space-l);
+  }
+}
+
+@media (width >= 900px) {
+  .carousel .carousel-slide {
+    min-height: 420px;
+    padding: var(--space-xxl) var(--space-xl);
+  }
+
+  .carousel .carousel-btn {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (width >= 1200px) {
+  .carousel .carousel-slide {
+    min-height: 480px;
+  }
+}
