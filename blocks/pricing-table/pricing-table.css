@@ -1,0 +1,200 @@
+/* pricing-table – dark cards, glass borders, 4-col grid */
+
+.pricing-table {
+  width: 100%;
+}
+
+/* billing toggle */
+.pricing-table .pricing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-s);
+  margin-bottom: var(--space-xl);
+}
+
+.pricing-table .pricing-toggle-label {
+  font-size: var(--body-font-size-s);
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  cursor: default;
+}
+
+.pricing-table .pricing-toggle-label.active {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.pricing-table .pricing-toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border: 1px solid var(--border-color-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.pricing-table .pricing-toggle-switch:hover {
+  border-color: var(--color-electric);
+}
+
+.pricing-table .pricing-toggle-switch:focus-visible {
+  outline: 2px solid var(--color-electric);
+  outline-offset: 2px;
+}
+
+.pricing-table .pricing-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-electric);
+  transition: transform var(--transition-fast);
+}
+
+.pricing-table .pricing-toggle-switch[aria-checked="true"] .pricing-toggle-thumb {
+  transform: translateX(22px);
+}
+
+/* grid layout */
+.pricing-table .pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-m);
+}
+
+/* card */
+.pricing-table .pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-l);
+  background: var(--surface-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-l);
+  transition: border-color var(--transition-normal), transform var(--transition-normal);
+}
+
+.pricing-table .pricing-card:hover {
+  border-color: var(--border-color-strong);
+}
+
+/* popular highlight */
+.pricing-table .pricing-card.popular {
+  border-color: var(--color-electric);
+  box-shadow: 0 0 40px rgb(89 203 232 / 10%);
+}
+
+.pricing-table .pricing-badge {
+  position: absolute;
+  top: calc(-1 * var(--space-xs) - 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 16px;
+  background: var(--color-electric);
+  color: var(--background-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+/* plan name */
+.pricing-table .pricing-name {
+  font-size: var(--heading-font-size-s);
+  color: var(--heading-color);
+  margin: 0 0 var(--space-s);
+}
+
+/* price */
+.pricing-table .pricing-price {
+  margin-bottom: var(--space-s);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.pricing-table .pricing-price-value {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 800;
+  color: var(--heading-color);
+  letter-spacing: -0.02em;
+}
+
+.pricing-table .pricing-price-period {
+  font-size: var(--body-font-size-s);
+  color: var(--text-secondary);
+}
+
+/* description */
+.pricing-table .pricing-description {
+  color: var(--text-secondary);
+  font-size: var(--body-font-size-s);
+  margin-bottom: var(--space-m);
+  line-height: 1.5;
+}
+
+.pricing-table .pricing-description p {
+  margin: 0;
+}
+
+/* feature list */
+.pricing-table .pricing-features {
+  list-style: none;
+  margin: 0 0 var(--space-l);
+  padding: 0;
+  flex: 1;
+}
+
+.pricing-table .pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 6px 0;
+  font-size: var(--body-font-size-s);
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pricing-table .pricing-features li:last-child {
+  border-bottom: none;
+}
+
+.pricing-table .pricing-features li svg {
+  flex-shrink: 0;
+}
+
+/* CTA */
+.pricing-table .pricing-cta {
+  margin-top: auto;
+}
+
+.pricing-table .pricing-cta .button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+/* responsive */
+@media (width >= 600px) {
+  .pricing-table .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .pricing-table .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (width >= 1200px) {
+  .pricing-table .pricing-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

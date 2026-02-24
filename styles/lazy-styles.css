@@ -1,1 +1,118 @@
-/* add global styles that can be loaded post LCP here */
+/* color scheme */
+:root {
+  color-scheme: dark;
+}
+
+/* glass button variant */
+a.button.glass,
+button.button.glass {
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  color: var(--text-color);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+a.button.glass:hover,
+a.button.glass:focus-visible,
+button.button.glass:hover,
+button.button.glass:focus-visible {
+  background: rgb(255 255 255 / 12%);
+  border-color: rgb(255 255 255 / 20%);
+  color: var(--heading-color);
+}
+
+/* section background variants */
+main .section.darker {
+  background-color: var(--surface-darkest);
+  margin: 0;
+  padding: var(--space-xxl) 0;
+}
+
+main .section.muted {
+  background-color: var(--surface-darker);
+  margin: 0;
+  padding: var(--space-xxl) 0;
+}
+
+main .section.gradient {
+  background: linear-gradient(180deg, var(--background-color) 0%, var(--surface-darker) 100%);
+  margin: 0;
+  padding: var(--space-xxl) 0;
+}
+
+main .section.gradient-cobalt {
+  background: linear-gradient(135deg, var(--background-color) 0%, #0a1a3a 50%, var(--background-color) 100%);
+  margin: 0;
+  padding: var(--space-xxl) 0;
+}
+
+main .section.centered {
+  text-align: center;
+}
+
+main .section.full-width > div {
+  max-width: unset;
+  padding: 0;
+}
+
+/* glow effects */
+main .section.glow {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: var(--space-xxl) 0;
+}
+
+main .section.glow::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgb(89 203 232 / 12%) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+main .section.glow-warm {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: var(--space-xxl) 0;
+}
+
+main .section.glow-warm::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgb(123 108 246 / 12%) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* dark scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 15%) transparent;
+}
+
+::selection {
+  background: rgb(89 203 232 / 30%);
+  color: var(--heading-color);
+}
+
+/* scroll-reveal animations - only activate once JS adds the .reveal-ready class */
+main.reveal-ready .section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+main.reveal-ready .section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

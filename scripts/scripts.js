@@ -110,6 +110,16 @@ function decorateButtons(main) {
       a.classList.add('secondary');
       em.replaceWith(a);
     }
+
+    /* add contextual aria-label for generic link text (WCAG) */
+    const generic = ['learn more', 'read more', 'get started', 'see more'];
+    if (generic.includes(text.toLowerCase())) {
+      const section = a.closest('.section') || a.closest('div');
+      const heading = section?.querySelector('h1, h2, h3');
+      if (heading) {
+        a.setAttribute('aria-label', `${text} about ${heading.textContent.trim()}`);
+      }
+    }
   });
 }
 
@@ -136,6 +146,17 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+
+    /* skip-to-main-content link (WCAG 2.4.1) */
+    if (!doc.querySelector('.skip-to-main')) {
+      const skip = document.createElement('a');
+      skip.href = '#main';
+      skip.className = 'skip-to-main';
+      skip.textContent = 'Skip to main content';
+      main.id = 'main';
+      doc.body.prepend(skip);
+    }
+
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }

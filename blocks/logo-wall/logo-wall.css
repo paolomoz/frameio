@@ -1,0 +1,49 @@
+/* logo-wall -- flex-wrap grid of partner/client logos */
+
+.logo-wall {
+  width: 100%;
+}
+
+.logo-wall .logo-wall-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+}
+
+.logo-wall .logo-wall-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-wall .logo-wall-item img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) brightness(2);
+  opacity: 0.6;
+  transition: filter var(--transition-normal), opacity var(--transition-normal);
+}
+
+.logo-wall .logo-wall-item:hover img {
+  filter: grayscale(0) brightness(1);
+  opacity: 1;
+}
+
+/* text fallback logos */
+.logo-wall .logo-wall-item:not(:has(img)) {
+  color: var(--text-secondary);
+  font-size: var(--heading-font-size-s);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  transition: opacity var(--transition-normal), color var(--transition-normal);
+}
+
+.logo-wall .logo-wall-item:not(:has(img)):hover {
+  opacity: 1;
+  color: var(--heading-color);
+}

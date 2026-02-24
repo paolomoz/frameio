@@ -1,0 +1,106 @@
+/* comparison-table -- feature matrix with sticky header */
+
+.comparison-table {
+  width: 100%;
+}
+
+.comparison-table .comparison-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-l);
+}
+
+.comparison-table .comparison-table-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--body-font-size-s);
+}
+
+/* sticky header */
+.comparison-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* header cells: base + first-child + min-width */
+.comparison-table thead th {
+  background: var(--surface-elevated);
+  color: var(--heading-color);
+  font-weight: 700;
+  font-size: var(--body-font-size-s);
+  padding: var(--space-s) var(--space-m);
+  text-align: center;
+  border-bottom: 1px solid var(--border-color-strong);
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.comparison-table thead th:first-child {
+  text-align: left;
+  min-width: 180px;
+}
+
+/* body cells */
+.comparison-table tbody td {
+  padding: var(--space-s) var(--space-m);
+  text-align: center;
+  color: var(--text-color);
+  background: var(--surface-card);
+  border-bottom: 1px solid var(--border-color);
+  min-width: 120px;
+}
+
+/* feature name column */
+.comparison-table .comparison-table-feature-name {
+  text-align: left;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* category row */
+.comparison-table .comparison-table-category-row td {
+  background: var(--surface-elevated);
+  font-weight: 700;
+  color: var(--heading-color);
+  font-size: var(--body-font-size-s);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-s) var(--space-m);
+}
+
+.comparison-table tbody td:first-child {
+  min-width: 180px;
+}
+
+/* last row no bottom border */
+.comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* hover row highlight */
+.comparison-table tbody tr:not(.comparison-table-category-row):hover td {
+  background: var(--surface-elevated);
+}
+
+/* check / x icons */
+.comparison-table .comparison-check {
+  color: #34d399;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.comparison-table .comparison-x {
+  color: #f87171;
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+@media (width >= 900px) {
+  .comparison-table thead th,
+  .comparison-table tbody td {
+    padding: var(--space-s) var(--space-l);
+  }
+}
