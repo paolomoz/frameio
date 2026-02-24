@@ -8,3 +8,5 @@ package-lock.json
 test/*
 tools/*
 drafts/*
+journal/*
+*.png
